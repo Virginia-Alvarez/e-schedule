@@ -1,4 +1,7 @@
 import '../styles/App.scss';
+import {Routes, Route} from 'react-router-dom';
+import { useEffect, useState} from 'react';
+import Login from './Login';
 
 function App() {
   // VARIABLES ESTADO
@@ -13,9 +16,33 @@ function App() {
 
   return (
     <div className="App">
-      <h1 className="title">Rellename!</h1>
-
-      {/* Aquí va tu código HTML. */}
+      <body>
+        <main className='main'>
+          <div className='login'>
+            <h1 className='title-landing'>Bienvenido a tu agenda</h1>
+            <a className='btn-start'>Comenzar</a>
+          </div>
+          <div class="area" >
+            <ul class="circles">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+            </ul>
+    </div >
+          {/* <Login/> */}
+        </main>
+      </body>
+      <footer className='footer'>
+        <p>E-schedule</p>
+        <p>&copy;Virginia Álvarez Aragón</p>
+      </footer>
     </div>
   );
 }
