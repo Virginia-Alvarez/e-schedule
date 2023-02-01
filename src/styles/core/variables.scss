@@ -1,0 +1,36 @@
+// FUNCTION REM
+
+$defaultFontSize: 16;
+@function rem($pixels) {
+  @return ($pixels / $defaultFontSize * 1rem);
+}
+
+// MIXINS
+
+@mixin displaymain() {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+@mixin titleFont() {
+  font-family: 'Jost', sans-serif;
+  font-weight: bold;
+  color: $colorFont;
+}
+
+
+
+// HEIGHT
+$bodyHeight: 100vh;
+
+// COLORS
+
+$backgroundMain: #4ebec8;
+$circlesLeft: #8fb3fb;
+$circlesRight: #4e81c8;
+$colorFont: white;
+$colorBtn: #573b8a;
+
+
+// FONT-FAMILY
+$fontTitle: 'Jost', sans-serif;
