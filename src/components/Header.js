@@ -2,13 +2,13 @@ import { Link } from "react-router-dom";
 
 const Header =()=>{
     return(
-        <header>
-        <nav>
-            <Link to='/'>Home</Link>
-            <Link to='/'>Día</Link>
-            <Link to='/'>Semana</Link>
-            <Link to='/'>Mes</Link>
-            <Link to='/'>Salir</Link>
+        <header className="header">
+        <nav className="nav-bar">
+            <Link className="nav-options" to='/'>Home</Link>
+            <Link className="nav-options" to='/día'>Día</Link>
+            <Link className="nav-options" to='/semana'>Semana</Link>
+            <Link className="nav-options" to='/mes'>Mes</Link>
+            <Link className="nav-options" to='/'>Salir</Link>
         </nav>
     </header>
     )

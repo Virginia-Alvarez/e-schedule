@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Footer from './Footer';
 
 const Landing = () =>{
     return (
@@ -21,6 +22,7 @@ const Landing = () =>{
                         <li></li>
                 </ul>
             </div >
+            <Footer/>
         </div>
     )
 }

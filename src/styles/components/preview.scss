@@ -1,0 +1,8 @@
+.mainSchedule{
+    @include displaymain();
+    background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+    height: 100vh;
+}
+.title-schedule{
+    @include titleFont();
+}

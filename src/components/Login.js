@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom";
+import Footer from './Footer';
+
 const Login = (props) =>{
     return(
         
@@ -5,24 +8,27 @@ const Login = (props) =>{
             <div className="step2">
                 <input type="checkbox" id="chk" aria-hidden="true"/>
                     <div className="signup">
-                        <form>
+                        <form method="post">
                             <label htmlFor="chk" aria-hidden="true">Sign up</label>
                             <input type="text" name="txt" placeholder="User name" required=""/>
                             <input type="email" name="email" placeholder="Email" required=""/>
                             <input type="password" name="pswd" placeholder="Password" required=""/>
-                            <button>Sign up</button>
+                            <button className="button" >Sign up</button>
                         </form>
                     </div>
                     <div className="login">
-                        <form>
+                        <form method="post">
                             <label htmlFor="chk" aria-hidden="true">Login</label>
                             <input type="email" name="email" placeholder="Email" required=""/>
                             <input type="password" name="pswd" placeholder="Password" required=""/>
-                            <button>Login</button>
+                            <Link  className="button" to='/previews'>Login</Link>
+                            {/* cambio button por LINK temporalmenmte. luego cambiar a button otra vez cuando tenga api */}
                         </form>
                     </div>
-                    </div>
+            </div>
+            <Footer/>
         </div>
+        
     
         )
 };

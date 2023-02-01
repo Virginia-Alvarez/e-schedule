@@ -2,18 +2,17 @@ import Header from './Header';
 
 const Preview = () =>{
     return(
-        <section>
+        <>
             <Header/>
-            <section>
-                <h1>Próximas consultas</h1>
-                <p>horas/tto</p>
-                <p>horas/tto</p>
-                <p>horas/tto</p>
-            </section>
-        </section>
-     
-        
-
+            <article className='mainSchedule'>
+                <h1 className='title-schedule'>Próximas consultas</h1>
+                <section>
+                    <p>horas</p>
+                    <p>tto</p>
+                </section>
+                {/* Realizaré un bucle para definir el nº de ttos que se verán el preview */}
+            </article>
+        </>                       
     )
 }
 

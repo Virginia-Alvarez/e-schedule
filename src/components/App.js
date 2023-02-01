@@ -4,6 +4,7 @@ import { useEffect, useState} from 'react';
 import Login from './Login';
 import Landing from './Landing';
 import Preview from './Preview';
+import Footer from './Footer';
 
 function App() {
   // VARIABLES ESTADO
@@ -18,19 +19,25 @@ function App() {
   // HTML EN EL RETURN
 
   return (
-    <div className="App">
+    <div className="app">
         <main>
           <Routes>
             <Route
               path='/'
               element= {
+                <>
                 <Landing/>
+                <Footer/>
+                </>
               }
             />
             <Route
               path='/login'
               element= {
+                <>
                 <Login/>
+                <Footer/>
+                </>
               }
             />
             <Route
@@ -41,10 +48,6 @@ function App() {
             />
           </Routes>
         </main>
-        <footer className='footer'>
-        <p>E-schedule</p>
-        <p>&copy;Virginia Álvarez Aragón</p>
-      </footer>
     </div>
   );
 }
