@@ -2,7 +2,27 @@
     @include displaymain();
     background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
     height: 100vh;
+    justify-content: flex-start;
+    gap: rem(100)
 }
 .title-schedule{
     @include titleFont();
+    margin-left: rem(70);
+    margin-top: rem(25);
+    font-size: rem(20);
+}
+.section-hour{
+    background-color: $colorBox;
+    width: rem(200);
+    height: rem(60);
+    margin-left: rem(65);
+    border-radius: rem(5);
+    box-shadow: 5px 10px 30px #000;
+    padding: rem(10);
+    text-align: left;
+    line-height: rem(18);
+}
+.info{
+    color: black;
+    font-weight: bold;
 }

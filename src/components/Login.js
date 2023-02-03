@@ -22,7 +22,7 @@ const Login = (props) =>{
                             <input type="email" name="email" placeholder="Email" required=""/>
                             <input type="password" name="pswd" placeholder="Password" required=""/>
                             <Link  className="button" to='/previews'>Login</Link>
-                            {/* cambio button por LINK temporalmenmte. luego cambiar a button otra vez cuando tenga api */}
+                            {/* cambio button por LINK temporalmenmte. luego cambiar a button otra vez cuando tenga bd */}
                         </form>
                     </div>
             </div>

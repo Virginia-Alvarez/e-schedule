@@ -5,13 +5,23 @@ import Login from './Login';
 import Landing from './Landing';
 import Preview from './Preview';
 import Footer from './Footer';
+import Day from './Day';
+import Week from './Week';
+import Month from './Month';
+
 
 function App() {
   // VARIABLES ESTADO
+  const [date, setDate] = useState(new Date());
 
   // USEEFFECT ?
 
   // FUNCIONES HANDLER
+
+  const handleDate=(value)=>{
+    setDate(value)
+  };
+
  
 
   // FUNCIONES Y VARIABLES QUE AYUDEN A RENDERIZAR HTML
@@ -44,6 +54,27 @@ function App() {
               path='/previews'
               element= {
                 <Preview/>
+              }
+            />
+            <Route
+              path='/day'
+              element= {
+                <Day/>
+              }
+            />
+            <Route
+              path='/week'
+              element= {
+                <Week/>
+              }
+            />
+            <Route
+              path='/month'
+              element= {
+                <Month
+                  date = {date}
+                  handleDate = {handleDate}
+                />
               }
             />
           </Routes>
