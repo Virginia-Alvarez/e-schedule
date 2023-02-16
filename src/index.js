@@ -41,3 +41,44 @@ server.get('/doctors/:doctorId/treatments', (req, res) => {
   res.json(foundTreatment);
 });
 
+server.get('/doctors/:doctorId/treatments/:treatmentId', (req, res) => {
+  const doctorId = req.params.doctorId;
+  const treatmentId = req.params.treatmentId;
+
+  const query = db.prepare ('SELECT * FROM treatments WHERE doctorId = ? and id =?');
+
+  const detailTreatment = query.all (doctorId, treatmentId);
+
+  res.json (detailTreatment);
+});
+
+server.post('/login',(req,res)=>{
+  const email = req.body.email;
+  const pass = req.body.password;
+
+  const query = db.prepare('SELECT * FROM doctors WHERE email = ? and password = ?');
+  const doctorFound = query.all (email,pass);
+  if (doctorFound && doctorFound.length) {  
+    res.json({
+      success: true,
+      userId: doctorFound[0].id,
+    });
+  } else {
+    res.json({  
+      success: false,
+      errorMessage: 'Usuaria/o no encontrada/o',
+    });
+  }
+})
+
+server.post('/sign-up,',(req, res)=>{
+  const { email, password } = req.body; 
+  const query = db.prepare('INSERT INTO doctors (email, password) VALUES (?, ?)'); //añidimos y guardamos un nuevo registro a la tabla doctors
+  const result = query.run(email, password); //ejecutamos la query de la base de datos
+  res.json({  
+    success: true,
+    userId: result.lastInsertRowid, 
+  });
+
+})
+
