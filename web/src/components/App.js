@@ -9,12 +9,41 @@ import Day from './Day';
 import Week from './Week';
 import Month from './Month';
 
+//services
+import apiDoctor from '../services/api-doctor';
+import router from '../services/router';
+
 
 function App() {
   // VARIABLES ESTADO
   const [date, setDate] = useState(new Date());
+  const [DoctorId, setDoctorId] = useState('');
+  const [doctorEmail, setDoctorEmail]= useState('');
+  const [doctorPassword, setDoctorPassword] = useState ('');
+  const [doctorTreatment, setDoctorTreatment] = useState ([]);
 
   // USEEFFECT ?
+  const sendLoginToApi = loginData =>{
+    apiDoctor.sendLoginToApi(loginData).then(response =>{
+      if (response.success ===true){
+        setDoctorId (response.doctorId);
+        router.redirect ('/');
+      }else {
+        // error
+      }
+    });
+  };
+
+  /*
+  Event: cerrar sesión.
+  Redireccionamos al inicio de la página.
+  Recargamos la página para que se borren todos los datos del estado de React.
+  */
+  const logout = () => {
+    router.redirect('/');
+    router.reload();
+  };
+
 
   // FUNCIONES HANDLER
 

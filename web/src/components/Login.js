@@ -1,7 +1,28 @@
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import Footer from './Footer';
 
 const Login = (props) =>{
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    //events
+    
+    const handleEmail = ev =>{
+        setEmail (ev.target.value);
+    }
+
+    const handlePassword = ev =>{
+        setPassword (ev.target.value);
+    }
+
+    const handleForm = ev =>{
+        ev.preventDefault();
+        props.sendLoginToApi({
+            email: email,
+            password: password
+        });
+    }
     return(
         
         <div className="loginContainer">
