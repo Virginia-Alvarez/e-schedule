@@ -61,7 +61,7 @@ server.post('/login',(req,res)=>{
   if (doctorFound && doctorFound.length) {  
     res.json({
       success: true,
-      userId: doctorFound[0].id,
+      doctorId: doctorFound[0].id,
     });
   } else {
     res.json({  
@@ -71,14 +71,24 @@ server.post('/login',(req,res)=>{
   }
 })
 
-server.post('/sign-up,',(req, res)=>{
-  const { email, password } = req.body; 
-  const query = db.prepare('INSERT INTO doctors (email, password) VALUES (?, ?)'); //añidimos y guardamos un nuevo registro a la tabla doctors
-  const result = query.run(email, password); //ejecutamos la query de la base de datos
-  res.json({  
-    success: true,
-    userId: result.lastInsertRowid, 
-  });
+server.post('/sign-up',(req, res)=>{
+  const { email, password, username } = req.body; 
+  const query = db.prepare('INSERT INTO doctors (username, email, password) VALUES (?, ?, ?)'); //añidimos y guardamos un nuevo registro a la tabla doctors
+  try {
+    const result = query.run(username, email, password); //ejecutamos la query de la base de datos
+    res.json({
+      success: true,
+      doctorId: result.lastInsertRowid,
+    });
+  }catch(error) {
+    res.json({  
+      success: false,
+      errorMessage: 'Se ha producido un error al crear el usuario',
+    });
+  }
 
 })
+
+const staticServerPathWeb = './src/public-react';
+server.use(express.static(staticServerPathWeb));
 

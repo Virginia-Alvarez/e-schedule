@@ -1,35 +1,52 @@
 import '../styles/App.scss';
-import {Routes, Route} from 'react-router-dom';
+import {Routes, Route, useNavigate} from 'react-router-dom';
 import { useEffect, useState} from 'react';
 import Login from './Login';
 import Landing from './Landing';
 import Preview from './Preview';
-import Footer from './Footer';
 import Day from './Day';
 import Week from './Week';
 import Month from './Month';
 
 //services
 import apiDoctor from '../services/api-doctor';
-import router from '../services/router';
 
 
 function App() {
+  const navigate = useNavigate();
   // VARIABLES ESTADO
   const [date, setDate] = useState(new Date());
-  const [DoctorId, setDoctorId] = useState('');
-  const [doctorEmail, setDoctorEmail]= useState('');
-  const [doctorPassword, setDoctorPassword] = useState ('');
-  const [doctorTreatment, setDoctorTreatment] = useState ([]);
+  const [doctorId, setDoctorId] = useState('');
+  // const [doctorEmail, setDoctorEmail]= useState('');
+  // const [doctorPassword, setDoctorPassword] = useState ('');
+  // const [doctorTreatment, setDoctorTreatment] = useState ([]);
+
+  //login
+  const [loginErrorMessage, setLoginErrorMessage] = useState('');
+   //sign up
+   const [signUpErrorMessage, setSignUpErrorMessage] = useState('');
 
   // USEEFFECT ?
   const sendLoginToApi = loginData =>{
+    setLoginErrorMessage('');
     apiDoctor.sendLoginToApi(loginData).then(response =>{
       if (response.success ===true){
         setDoctorId (response.doctorId);
-        router.redirect ('/');
+        navigate('/previews');
       }else {
-        // error
+        setLoginErrorMessage(response.errorMessage);
+      }
+    });
+  };
+
+  const sendSignupToApi = signUpData =>{
+    setLoginErrorMessage('');
+    apiDoctor.sendSingUpToApi(signUpData).then(response =>{
+      if (response.success ===true){
+        setDoctorId (response.doctorId);
+        navigate('/previews');
+      }else {
+        setSignUpErrorMessage(response.errorMessage);
       }
     });
   };
@@ -39,10 +56,10 @@ function App() {
   Redireccionamos al inicio de la página.
   Recargamos la página para que se borren todos los datos del estado de React.
   */
-  const logout = () => {
-    router.redirect('/');
-    router.reload();
-  };
+  // const logout = () => {
+  //   router.redirect('/');
+  //   router.reload();
+  // };
 
 
   // FUNCIONES HANDLER
@@ -61,22 +78,15 @@ function App() {
     <div className="app">
         <main>
           <Routes>
-            <Route
-              path='/'
+            <Route exact path='/'
               element= {
-                <>
                 <Landing/>
-                <Footer/>
-                </>
               }
             />
             <Route
               path='/login'
               element= {
-                <>
-                <Login/>
-                <Footer/>
-                </>
+                <Login loginErrorMessage={loginErrorMessage} signUpErrorMessage={signUpErrorMessage} sendLoginToApi={sendLoginToApi} sendSignupToApi={sendSignupToApi}/>
               }
             />
             <Route

@@ -5,7 +5,7 @@ const sendLoginToApi = (data) =>{
         email: data.email,
         password: data.password,
     };
-  return fetch('http://localhost:4000/login`', {
+  return fetch('http://localhost:4000/login', {
     method: 'POST',
     body: JSON.stringify (bodyParams),
     headers: {
@@ -24,8 +24,9 @@ const sendSingUpToApi = (data) =>{
     const bodyParams = {
         email: data.email,
         password: data.password,
+        username: data.username,
     };
-    return fetch('http://localhost:4000/sign-up`', {
+    return fetch('http://localhost:4000/sign-up', {
     method: 'POST',
     body: JSON.stringify (bodyParams),
     headers: {
@@ -38,9 +39,9 @@ const sendSingUpToApi = (data) =>{
     });
 };
 
-const objToExport = {
+const apiDoctor = {
     sendLoginToApi : sendLoginToApi,
     sendSingUpToApi : sendSingUpToApi,
 }
 
-export default objToExport;
+export default apiDoctor;

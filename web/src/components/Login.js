@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import Footer from './Footer';
+import SignUp from './SignUp';
 
 const Login = (props) =>{
     const [email, setEmail] = useState('');
@@ -23,29 +24,33 @@ const Login = (props) =>{
             password: password
         });
     }
+
+      const renderErrorMessage = () => {
+    // Si el API ha devuelto un error, App lo guarda en su estado y nos lo pasa por props
+    if (props.loginErrorMessage !== '') {
+      return (
+        <p className="error-message">
+          Error en el login: <span className="">{props.loginErrorMessage}</span>
+        </p>
+      );
+    }
+  };
+
     return(
         
         <div className="loginContainer">
             <div className="step2">
                 <input type="checkbox" id="chk" aria-hidden="true"/>
-                    <div className="signup">
-                        <form method="post">
-                            <label htmlFor="chk" aria-hidden="true">Sign up</label>
-                            <input type="text" name="txt" placeholder="User name" required=""/>
-                            <input type="email" name="email" placeholder="Email" required=""/>
-                            <input type="password" name="pswd" placeholder="Password" required=""/>
-                            <button className="button" >Sign up</button>
-                        </form>
-                    </div>
                     <div className="login">
-                        <form method="post">
+                        <form method="post" onSubmit = {handleForm}>
                             <label htmlFor="chk" aria-hidden="true">Login</label>
-                            <input type="email" name="email" placeholder="Email" required=""/>
-                            <input type="password" name="pswd" placeholder="Password" required=""/>
-                            <Link  className="button" to='/previews'>Login</Link>
-                            {/* cambio button por LINK temporalmenmte. luego cambiar a button otra vez cuando tenga bd */}
+                            <input type="email" name="email" placeholder="Email" id="email" value ={email} onChange = {handleEmail} required=""/>
+                            <input type="password" name="pswd" placeholder="Password" id="password" value={password} onChange={handlePassword} required=""/>
+                            <input className="button" type="submit" value="Login" />
+                            {renderErrorMessage()}
                         </form>
                     </div>
+                    <SignUp sendSignupToApi={props.sendSignupToApi} signUpErrorMessage={props.signUpErrorMessage}/>
             </div>
             <Footer/>
         </div>
