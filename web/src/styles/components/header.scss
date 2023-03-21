@@ -6,7 +6,7 @@
     align-items: flex-start;
     height: 100vh;
     padding: rem(5);
-    background-color: $colorBtn;
+    @include principalColor();
     border-radius: 5px;
     box-shadow: 5px 10px 30px #000;
 }
@@ -15,5 +15,9 @@
     color: $colorFont;
     font-family: $fontTitle;
     font-weight: bold;
+}
+.icon{
+    width: rem(100);
+    height: rem(100);
 }
 

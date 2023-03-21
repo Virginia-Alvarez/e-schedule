@@ -32,11 +32,12 @@ function getFormatedDate() {
 server.get('/doctors/:doctorId/treatments', (req, res) => {
     const doctorId = req.params.doctorId;
     const date = req.query.date ? req.query.date : getFormatedDate();
+    const itemsNumber = req.query.itemsNumber ? req.query.itemsNumber : 100;
 
     // preparamos la query
-    const query = db.prepare('SELECT * FROM treatments WHERE doctorId = ? and date = ?');
+    const query = db.prepare('SELECT * FROM treatments WHERE doctorId = ? and date = ? LIMIT ?');
 // ejecutamos la query
-    const foundTreatment = query.all(doctorId, date);
+    const foundTreatment = query.all(doctorId, date, itemsNumber);
     console.log(JSON.stringify(foundTreatment))
   res.json(foundTreatment);
 });

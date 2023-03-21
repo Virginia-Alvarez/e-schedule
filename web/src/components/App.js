@@ -1,26 +1,26 @@
 import '../styles/App.scss';
 import {Routes, Route, useNavigate} from 'react-router-dom';
-import { useEffect, useState} from 'react';
+import { useState} from 'react';
+import ls from '../services/localstorage';
 import Login from './Login';
 import Landing from './Landing';
 import Preview from './Preview';
 import Day from './Day';
 import Week from './Week';
 import Month from './Month';
+import Details from './Details';
 
 //services
 import apiDoctor from '../services/api-doctor';
 
+import { getFormatedDate } from '../utils/utils';
 
 function App() {
   const navigate = useNavigate();
   // VARIABLES ESTADO
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(getFormatedDate());
   const [doctorId, setDoctorId] = useState('');
-  // const [doctorEmail, setDoctorEmail]= useState('');
-  // const [doctorPassword, setDoctorPassword] = useState ('');
-  // const [doctorTreatment, setDoctorTreatment] = useState ([]);
-
+ 
   //login
   const [loginErrorMessage, setLoginErrorMessage] = useState('');
    //sign up
@@ -29,14 +29,21 @@ function App() {
   // USEEFFECT ?
   const sendLoginToApi = loginData =>{
     setLoginErrorMessage('');
-    apiDoctor.sendLoginToApi(loginData).then(response =>{
-      if (response.success ===true){
-        setDoctorId (response.doctorId);
-        navigate('/previews');
-      }else {
-        setLoginErrorMessage(response.errorMessage);
-      }
-    });
+    const doctor =ls.get('doctor');
+    if (!doctor){
+      apiDoctor.sendLoginToApi(loginData).then(response =>{
+        if (response.success ===true){
+          setDoctorId (response);
+          ls.set('doctor',response);  
+          navigate('/previews');
+        }else {
+          setLoginErrorMessage(response.errorMessage);
+        }
+      });
+    }else {
+      setDoctorId (doctor.doctorId);
+      navigate('/previews');
+    }
   };
 
   const sendSignupToApi = signUpData =>{
@@ -44,6 +51,7 @@ function App() {
     apiDoctor.sendSingUpToApi(signUpData).then(response =>{
       if (response.success ===true){
         setDoctorId (response.doctorId);
+        
         navigate('/previews');
       }else {
         setSignUpErrorMessage(response.errorMessage);
@@ -51,21 +59,19 @@ function App() {
     });
   };
 
-  /*
-  Event: cerrar sesión.
-  Redireccionamos al inicio de la página.
-  Recargamos la página para que se borren todos los datos del estado de React.
-  */
-  // const logout = () => {
-  //   router.redirect('/');
-  //   router.reload();
-  // };
-
 
   // FUNCIONES HANDLER
 
   const handleDate=(value)=>{
     setDate(value)
+  };
+
+  const handleAllTreatments = data => {
+    if (data.key === 'doctor') {
+      setDoctorId(data.value);
+    } else if (data.key === 'date') {
+      setDate(data.value);
+    }
   };
 
  
@@ -78,11 +84,7 @@ function App() {
     <div className="app">
         <main>
           <Routes>
-            <Route exact path='/'
-              element= {
-                <Landing/>
-              }
-            />
+            
             <Route
               path='/login'
               element= {
@@ -92,19 +94,25 @@ function App() {
             <Route
               path='/previews'
               element= {
-                <Preview/>
+                <Preview date={date}/>
               }
             />
             <Route
               path='/day'
               element= {
-                <Day/>
+                <Day date={date}/>
+              }
+            />
+             <Route
+              path='/treatments/:treatmentId'
+              element= {
+                <Details />
               }
             />
             <Route
               path='/week'
               element= {
-                <Week/>
+                <Week date={date}/>
               }
             />
             <Route
@@ -114,6 +122,11 @@ function App() {
                   date = {date}
                   handleDate = {handleDate}
                 />
+              }
+            />
+            <Route exact path='/'
+              element= {
+                <Landing/>
               }
             />
           </Routes>

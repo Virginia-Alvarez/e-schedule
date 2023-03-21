@@ -1,6 +1,6 @@
 .mainSchedule{
     @include displaymain();
-    background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+    @include background();
     height: 100vh;
     justify-content: flex-start;
     gap: rem(100)
@@ -10,19 +10,58 @@
     margin-left: rem(70);
     margin-top: rem(25);
     font-size: rem(20);
+    @media all and (min-width: 600px){
+       font-size: rem(40);
+    }
 }
-.section-hour{
-    background-color: $colorBox;
-    width: rem(200);
-    height: rem(60);
-    margin-left: rem(65);
-    border-radius: rem(5);
-    box-shadow: 5px 10px 30px #000;
-    padding: rem(10);
-    text-align: left;
-    line-height: rem(18);
+.box-hour{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding-right: rem(15);
+    border:solid 2px #76448A ;
+    border-radius: rem(20);
+}
+.icon-detail{
+    width: rem(100);
+    height: rem(100);
+    z-index: 2
+}
+.hour{
+    font-size: rem(20);
+    color: $colorFont;
 }
 .info{
-    color: black;
+    margin-right: rem(100)
+}
+.section-hour{
+    @include box();
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-start;
+    width: rem(300);
+    height: rem(150);
+    margin-left: rem(65);
+    border-radius: rem(25);
+    box-shadow: 5px 10px 30px #000;
+    text-align: center;
+    line-height: rem(18);
+    align-items: center;
+    @media all and (min-width: 600px){
+        width: rem(500);
+        height: rem(100);
+        padding: rem(10);
+      
+    }
+    @media all and (min-width: 1024px){
+        width: rem(800);
+        height: rem(100);
+        padding: rem(15);
+       
+    }
+}
+.info{
+    color: $colorFont;
     font-weight: bold;
 }

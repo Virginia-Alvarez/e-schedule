@@ -18,6 +18,28 @@ $defaultFontSize: 16;
   color: $colorFont;
 }
 
+@mixin background(){
+  background: #076585;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #fff, #076585);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #fff, #076585); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+@mixin box(){
+  background: #EAEAEA;  /* fallback for old browsers */
+  
+  
+  
+  
+
+
+}
+
+@mixin principalColor(){
+  background: #00b4db;
+  background: linear-gradient(to right, #00b4db, #0083b0);
+}
+
+
 
 
 // HEIGHT
@@ -30,7 +52,10 @@ $circlesLeft: #8fb3fb;
 $circlesRight: #4e81c8;
 $colorFont: white;
 $colorBtn: #573b8a;
-$colorBox: white;
+$colorBckg: #e0eafc;
+$colorBtn2: #FF512F;
+
+
 
 
 // FONT-FAMILY
