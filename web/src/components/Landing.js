@@ -5,9 +5,9 @@ import landingImg from '../images/landing.png';
 const Landing = () =>{
     return (
         <div className="main">
-             <div >
+             {/* <div >
                 <img className="img-landing" src={landingImg} alt="Imagen de una agenda" />
-            </div>
+            </div> */}
             <div className='landing'>
                 <h1 className='title-landing'>Bienvenido a tu agenda</h1>
                 <Link className='btn-start' to='/login'>Comenzar</Link>
