@@ -2,12 +2,11 @@ body{
     font-family: $fontTitle;
     height: $bodyHeight;
 }
-.img-landing{
-    width: 100vw;
-    height: 50vh;
-    translate: rem(80) rem(70);
-    transform: rotate(-15deg)
-}
+// .img-landing{
+//     height: 50vh;
+//     translate: rem(80) rem(70);
+//     transform: rotate(-15deg)
+// }
 
 .main{ 
     // background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
@@ -23,8 +22,8 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: rem(100);
-    margin-bottom: rem(-300);
+    // gap: rem(100);
+    // margin-bottom: rem(-300);
     // gap: rem(200);
     // margin-bottom: rem(150);
 }
