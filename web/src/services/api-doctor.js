@@ -5,7 +5,7 @@ const sendLoginToApi = (data) =>{
         email: data.email,
         password: data.password,
     };
-  return fetch('http://localhost:4000/login', {
+  return fetch('//localhost:4000/login', {
     method: 'POST',
     body: JSON.stringify (bodyParams),
     headers: {

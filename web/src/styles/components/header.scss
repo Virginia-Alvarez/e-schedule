@@ -10,6 +10,7 @@
     border-radius: 5px;
     box-shadow: 5px 10px 30px #000;
 }
+
 .nav-options{
     text-decoration: none;
     color: $colorFont;
@@ -19,5 +20,20 @@
 .icon{
     width: rem(100);
     height: rem(100);
+}
+
+@media all and (max-width: 600px){
+    .nav-bar{
+        @if var(--hamburgerVisible) { display: none } @else { display: flex };
+        position: fixed;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        height: 100vh;
+        padding: rem(5);
+        @include principalColor();
+        border-radius: 5px;
+        box-shadow: 5px 10px 30px #000;
+    }
 }
 

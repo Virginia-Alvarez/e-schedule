@@ -1,0 +1,23 @@
+.hamburger{
+    display: none;
+}
+
+@media all and (max-width: 600px){
+    .hamburger{
+        width: rem(20);
+        height: rem(10);
+        display: flex;
+        justify-content: space-around;
+        flex-flow: column nowrap;
+        z-index: 10;
+    }
+}
+
+.burger{
+    width: rem(20);
+    height: rem(10);
+    border-radius: rem(10);
+    background-color: blue;
+    transform-origin: rem(1);
+    transition: all 0.3 linear;
+}

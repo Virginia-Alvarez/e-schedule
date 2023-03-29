@@ -46,7 +46,7 @@ const Login = (props) =>{
                             <label htmlFor="chk" aria-hidden="true">Login</label>
                             <input type="email" name="email" placeholder="Email" id="email" value ={email} onChange = {handleEmail} required=""/>
                             <input type="password" name="pswd" placeholder="Password" id="password" value={password} onChange={handlePassword} required=""/>
-                            <input className="button" type="submit" value="Login" />
+                            <button className="button" type="submit">Login</button>
                             {renderErrorMessage()}
                         </form>
                     </div>
